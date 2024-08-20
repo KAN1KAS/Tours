@@ -1,0 +1,56 @@
+{% extends "inicio/predeterminado.html" %}
+
+{% block titulo %} CERRAR SESIÓN {% endblock %}
+
+{% load static %}
+
+
+{% block contenido %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="{% static 'inicio/css/nosotros.css' %}" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <!-- Contenido de la página -->
+    <div class="page-content-principal">
+       
+
+                    <h3>Cerrar Sesión</h3>          
+                    <form method="POST" action="{% url 'cerrar_sesion'%}" >
+                        {% csrf_token %}                  
+                        <div>
+                            <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" value="{{ usuario.first_name }}">
+                        </div>
+                        <div>
+                            <label for="apellidos">Apellidos</label><input type="text" name="apellidos" id="apellidos" value="{{ usuario.last_name }}">
+                        </div>
+                        <div>
+                            <label for="correo">Correo Electronico</label><input type="text" name="correo" id="correo" value="{{ usuario.email }}" placeholder="Ingrese correo electronico">
+                        </div>   
+                        <div>
+                            <label for="telefono">Teléfono</label><input type="text" name="telefono" id="telefono" value="" placeholder="Ingresa tu numero telefonico">
+                        </div>                 
+                        <div>
+                            <label for="contraseña">Cuidad</label><input type="text" name="ciudad" id="ciudad" placeholder="Ingresa tu ciudad">
+                        </div>
+                        <div>
+                            <label for="contraseña">Estado</label><input type="text" name="ciudad" id="ciudad" placeholder="Ingresa tu ciudad">
+                        </div>
+                        <div>
+                           
+                            <input class="btn btn-azul" type="submit" value="CERRAR SESIÓN">
+                        </div> 
+                    </form>
+                
+            </div>
+            {% comment %} <img src="{% static 'inicio/images/bosque.png' %}">
+            <h2 class="title">Recorridos por Mexico</h2> {% endcomment %}
+        
+    </div>
+</body>
+</html>
+{%endblock%}

@@ -1,0 +1,114 @@
+/* .titu{
+    margin-top: 50px;
+    align-self: center;
+}
+.tours-container {
+    display: flex;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin-left: 70px;
+    margin-bottom: 50px;
+}
+
+.tour {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    width: 212px;
+    height: 300px;
+}
+
+.tour img {
+    max-width: 100%;
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+}
+
+.tour h2 {
+    margin: 15px 0 0 0;
+    font-size: 1.2rem;
+    margin-top: 30px;
+}
+
+.tour:hover {
+    transform: translateY(-5px);
+}
+
+ */
+
+ /* Estilos base */
+.titu {
+    margin-top: 50px;
+    text-align: center; /* Alineación centrada para el título */
+}
+
+.tours-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 50px; /* Centra horizontalmente y agrega margen inferior */
+}
+
+.tour {
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 10px;
+    transition: transform 0.3s ease;
+    width: 100%; /* Ajusta el ancho al contenedor */
+    max-width: 212px; /* Máximo ancho para evitar estiramiento en pantallas grandes */
+    height: 300px;
+}
+
+.tour img {
+    max-width: 100%;
+    width: 200px;
+    height: 200px;
+    border-radius: 150px;
+}
+
+.tour h2 {
+    margin: 15px 0 0 0;
+    font-size: 1.2rem;
+    margin-top: 30px;
+}
+
+.tour:hover {
+    transform: translateY(-5px);
+}
+
+/* Media queries para responsividad */
+@media only screen and (max-width: 768px) {
+    .tours-container {
+        grid-template-columns: 1fr; /* Cambia a una columna en dispositivos pequeños */
+        gap: 10px;
+        margin-left: 20px; /* Elimina el margen izquierdo */
+    }
+
+    .tour {
+        max-width: none; /* Elimina el ancho máximo para que ocupe el ancho completo */
+        width: 100%; /* Ajusta al ancho completo del contenedor */
+        margin-bottom: 20px; /* Espaciado entre los tours en dispositivos pequeños */
+    }
+
+    .tour img {
+        width: 100%; /* Imágenes ocupan todo el ancho del contenedor */
+        height: 250px; /* Altura automática para mantener la proporción */
+        border-radius: 10px; /* Ajusta el radio de borde */
+    }
+
+    .tour h2 {
+        margin-top: 6px; /* Reducción del margen superior */
+    }
+}

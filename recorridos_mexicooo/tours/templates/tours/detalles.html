@@ -1,0 +1,215 @@
+{% extends "inicio/predeterminado.html" %}
+
+{% block titulo %} DETALLE DEL TOURS {%endblock%}
+
+{%load static%}
+
+{% block contenido %}
+
+<div class="container_tour">
+    <div class="content">
+        <h1>{{ tours.nombre }}</h1>
+        <h2>{{ tours.ciudad }}, {{ tours.estado }}</h2>
+        <div class="image-gallery">
+            <img src="{{tours.imagen.url}}">
+        </div>
+        <div class="details">
+            <p>Fecha: {{ tours.fecha }}</p>
+            <p>Hora: {{ tours.hora }}</p>
+            <p>Kilómetros del recorrido: {{ tours.km }}</p>
+            <p>Punto de inicio: {{ tours.punto_inicio }}</p>
+            <p>Descripción:  {{ tours.descripcion }}</p>
+        </div>
+        <button class="reserve-button" id="openModalBtn">HACER RESERVA</button>
+    </div>
+    <div class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30053.3133877659!2d-100.31173681822332!3d19.68432778371735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2c0448b6af7d5%3A0x7835069efafe3c80!2s61295%20Santuario%20Mariposa%20Monarca%2C%20Mich.!5e0!3m2!1ses!2smx!4v1720765515188!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<!-- Modal de reserva-->
+{% comment %} <div id="reservationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>{{ tours.nombre }}</h1>
+        <h2>{{ tours.ciudad }}, {{ tours.estado }}</h2>
+        <img src="{{tours.imagen.url}}" style="height: 150px; width: 100%;">
+        <div class="details">
+            <p>Fecha: {{ tours.fecha }}</p>
+            <p>Hora: {{ tours.hora }}</p>
+            <p>Kilómetros del recorrido: {{ tours.km }}</p>
+            <p>Punto de inicio: {{ tours.punto_inicio }}</p>
+            <p>Punto final: {{ tours.punto_final }}</p>
+            <p>Costo por persona: {{ tours.costo }}</p>
+            <p>Lugares disponibles: {{ tours.lugares_disponibles }}</p>
+        </div>
+        <form>
+            <label for="num_lugares">Lugares a reservar:</label>
+            <input type="number" id="num_lugares" name="num_lugares" min="1">
+            <p>Tu pago es de: $<span id="total_pago">0</span></p>
+            <button type="submit" class="pay-button">PAGAR</button>
+        </form>
+    </div>
+</div>
+
+<!-- Modal de pago-->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="paymentModal">&times;</span>
+        <h1>Detalles de Pago</h1>
+        <form>
+            <label for="card_number">Número de tarjeta:</label>
+            <input type="text" id="card_number" name="card_number">
+            <label for="card_expiry">Fecha de expiración:</label>
+            <input type="text" id="card_expiry" name="card_expiry">
+            <label for="card_cvc">CVC:</label>
+            <input type="text" id="card_cvc" name="card_cvc">
+            <button type="submit" class="pay-button">PAGAR</button>
+        </form>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var modal = document.getElementById("reservationModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.addEventListener("click", function() {
+        modal.style.display = "block";
+    });
+
+    span.addEventListener("click", function() {
+        modal.style.display = "none";
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    });
+
+    document.getElementById("num_lugares").addEventListener("input", function() {
+        var costo = parseFloat("{{ tours.costo }}"); // Convierte el costo a un número flotante
+        var lugares = parseInt(this.value, 10); // Convierte el valor de los lugares a un número entero
+        if (isNaN(costo) || isNaN(lugares)) {
+            document.getElementById("total_pago").textContent = '0';
+        } else {
+            var total = costo * lugares;
+            document.getElementById("total_pago").textContent = total;
+        }
+    });
+
+    }); 
+
+</script> 
+ {% endcomment %}
+ <div id="reservationModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="reservationModal">&times;</span>
+        <h1>{{ tours.nombre }}</h1>
+        <h2>{{ tours.ciudad }}, {{ tours.estado }}</h2>
+        <img src="{{tours.imagen.url}}" style="height: 150px; width: 100%;">
+        <div class="details">
+            <p>Fecha: {{ tours.fecha }}</p>
+            <p>Hora: {{ tours.hora }}</p>
+            <p>Kilómetros del recorrido: {{ tours.km }}</p>
+            <p>Punto de inicio: {{ tours.punto_inicio }}</p>
+            <p>Punto final: {{ tours.punto_final }}</p>
+            <p>Costo por persona: {{ tours.costo }}</p>
+            <p>Lugares disponibles: {{ tours.lugares_disponibles }}</p>
+        </div>
+        <form id="reservationForm">
+            <label for="num_lugares">Lugares a reservar:</label>
+            <input type="number" id="num_lugares" name="num_lugares" min="1">
+            <p>Tu pago es de: $<span id="total_pago">0</span></p>
+            <button type="button" id="payButton" class="pay-button">PAGAR</button>
+        </form>
+    </div>
+</div>
+
+<!-- Segundo Modal (Pago por Tarjeta) -->
+<div id="paymentModal" class="modal">
+    <div class="modal-content">
+        <span class="close" data-modal="paymentModal">&times;</span>
+        <h1>Detalles de Pago</h1>
+        <form>
+            <label for="card_holder">Nombre del Titular:</label>
+            <input type="text" id="card_holder" name="card_holder" required>
+            
+            <label for="card_number">Número de tarjeta:</label>
+            <input type="text" id="card_number" name="card_number" required>
+            
+            <label for="card_expiry">Fecha de expiración:</label>
+            <input type="text" id="card_expiry" name="card_expiry" required>
+            
+            <label for="card_cvc">CVC:</label>
+            <input type="text" id="card_cvc" name="card_cvc" required>
+            
+            <button type="submit" class="pay-button">PAGAR</button>
+        </form>
+        <a href="https://www.teamnet.com.mx/hubfs/Comunicaci%C3%B3n%202019/Comunicaci%C3%B3n%20Socios/2020/P%C3%A1gina%20web/team%20web/Pol%C3%ADtica%20Pago%20con%20Tarjeta%20-%20teammate.pdf" target="_blank" class="policy-link">Políticas de Pago</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    var reservationModal = document.getElementById("reservationModal");
+    var paymentModal = document.getElementById("paymentModal");
+    var openBtn = document.getElementById("openModalBtn");
+    var closeButtons = document.getElementsByClassName("close");
+    var payButton = document.getElementById("payButton");
+
+    function openModal(modal) {
+        modal.style.display = "block";
+    }
+
+    function closeModal(modal) {
+        modal.style.display = "none";
+    }
+
+    openBtn.addEventListener("click", function() {
+        openModal(reservationModal);
+    });
+
+    Array.from(closeButtons).forEach(function(btn) {
+        btn.addEventListener("click", function() {
+            var modalId = btn.getAttribute("data-modal");
+            closeModal(document.getElementById(modalId));
+        });
+    });
+
+    payButton.addEventListener("click", function() {
+        var numLugares = parseInt(document.getElementById("num_lugares").value, 10);
+        var costo = parseFloat("{{ tours.costo|default:0 }}"); // Asegúrate de que el valor sea un número
+        if (!isNaN(numLugares) && !isNaN(costo)) {
+            var total = costo * numLugares;
+            document.getElementById("total_pago").textContent = total;
+            closeModal(reservationModal);
+            openModal(paymentModal);
+        }
+    });
+
+    window.addEventListener("click", function(event) {
+        if (event.target === reservationModal) {
+            closeModal(reservationModal);
+        }
+        if (event.target === paymentModal) {
+            closeModal(paymentModal);
+        }
+    });
+
+    document.getElementById("num_lugares").addEventListener("input", function() {
+        var costo = parseFloat("{{ tours.costo|default:0 }}");
+        var lugares = parseInt(this.value, 10);
+        if (isNaN(costo) || isNaN(lugares)) {
+            document.getElementById("total_pago").textContent = '0';
+        } else {
+            var total = costo * lugares;
+            document.getElementById("total_pago").textContent = total;
+        }
+    });
+});
+</script>
+<!-- /Contenido Principal-->
+{%endblock%}
