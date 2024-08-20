@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1">
+<title>{%block titulo%} {%endblock%}</title>
+
+{%load static%}
+<link href="{% static 'inicio/css/bootstrap.min.css'%}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/londinium-theme.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/stylesE.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/stylesFooter.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/icons.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/toursgral.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/submenu.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/sesion.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/botones.css' %}" rel="stylesheet" type="text/css">
+<link href="{% static 'inicio/css/detalles.css' %}" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/charts/sparkline.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/forms/uniform.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/select2.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/inputmask.js"></script>
+<script type="text/javascript" src="js/plugins/forms/autosize.js"></script>
+<script type="text/javascript" src="js/plugins/forms/inputlimit.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/listbox.js"></script>
+<script type="text/javascript" src="js/plugins/forms/multiselect.js"></script>
+<script type="text/javascript" src="js/plugins/forms/validate.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/tags.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/switch.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/forms/uploader/plupload.full.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/uploader/plupload.queue.min.js"></script>
+
+<script type="text/javascript" src="js/plugins/forms/wysihtml5/wysihtml5.min.js"></script>
+<script type="text/javascript" src="js/plugins/forms/wysihtml5/toolbar.js"></script>
+
+<script type="text/javascript" src="js/plugins/interface/daterangepicker.js"></script>
+<script type="text/javascript" src="js/plugins/interface/fancybox.min.js"></script>
+<script type="text/javascript" src="js/plugins/interface/moment.js"></script>
+<script type="text/javascript" src="js/plugins/interface/jgrowl.min.js"></script>
+<script type="text/javascript" src="js/plugins/interface/datatables.min.js"></script>
+<script type="text/javascript" src="js/plugins/interface/colorpicker.js"></script>
+<script type="text/javascript" src="js/plugins/interface/fullcalendar.min.js"></script>
+<script type="text/javascript" src="js/plugins/interface/timepicker.min.js"></script>
+
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/application.js"></script>
+
+</head>
+
+
+<body>
+
+ 	<div class="page-container">
+
+		<!-- Barra de menú -->
+		<div class="navbar">
+            <div class="user-menu dropdown">
+                <a href="#">
+					<img src="{% static 'inicio/images/x.png' %}" style="float: left; margin-right: 10px;">
+                </a>
+            </div>
+
+			<div class="navbar-content">
+				<!-- Menú de navegación -->
+				<button class="menu-toggle">&#9776;</button>
+				<ul class="navigation">
+					<li class="{% if request.path == '/' %}active{% endif %}"><a href="{% url 'principal' %}">INICIO</a></li>
+					<li class="{% if request.path == '/nosotros/' %}active{% endif %}"><a href="{% url 'nosotros' %}">NOSOTROS</a></li>
+					<li class="{% if request.path == '/catalogos/' %}active{% endif %}">
+						<a href="#">CATÁLOGOS</a>
+						<ul class="submenu">
+							<li>
+								<a href="#">Próximos</a>
+								<ul class="submenu">
+									<li><a href="{% url 'tours' %}">Todos</a></li>
+									<li><a href="{% url 'mich' %}">Michoacán</a></li>
+									<li><a href="{% url 'qro' %}">Querétaro</a></li>
+									<li><a href="#">Edo. Mex</a></li>
+								</ul>
+							</li>
+							<li><a href="{% url 'realizados' %}">Realizados</a></li>
+						</ul>
+					</li>
+					<li class="{% if request.path == '/favoritos/' %}active{% endif %}"><a href="{% url 'favoritos' %}">FAVORITOS</a></li>
+					<div class="boton-modal">
+						<li class="{% if request.path == '/sesion/' %}active{% endif %}"><a href="{% url 'sesion' %}"><label for="btn-modal">INICIAR SESIÓN</label></a></li>
+					</div>	
+				</ul>
+				<!-- /Fin menú -->
+			</div>
+			
+		</div>
+		<!-- /sidebar -->
+	</div>
+	<script>
+		// JavaScript para controlar el menú desplegable
+		const menuToggle = document.querySelector('.menu-toggle');
+		const navigation = document.querySelector('.navigation');
+	
+		menuToggle.addEventListener('click', () => {
+		  navigation.classList.toggle('active');
+		});
+	</script>
+	<!-- CONTENIDO -->
+	{% block contenido %} <!--Template Tag-->
+		<!--block sirve para indicar que colocaremos un bloque de
+		contenido a través de nuestra variable content -->
+	{% endblock %}
+
+
+	<!-- Pie de página -->
+	<footer class="footer">
+		<div class="container">
+			<div class="social-container">
+				<div class="footer-content">
+					<img src="{% static 'inicio/images/x.png' %}" class="rounded-circle" alt="Imagen Circular">
+					<p class="text-muted mt-2">&copy; 2024.</p>
+				</div>
+				<div class="social-icons">
+					<a href="https://www.instagram.com" target="_blank">
+						<img src="{% static 'inicio/images/insta.png' %}" alt="Instagram" width="30" height="30">
+					</a>
+					<a href="https://www.facebook.com" target="_blank">
+						<img src="{% static 'inicio/images/face.png' %}" alt="Facebook" width="30" height="30">
+					</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!-- /Pie de página -->
+
+
+</body>
+</html>

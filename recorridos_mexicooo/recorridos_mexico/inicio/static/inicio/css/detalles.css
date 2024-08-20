@@ -1,0 +1,191 @@
+/* Estilos base */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+}
+
+.container_tour {
+    max-width: 900px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+h1, h2 {
+    text-align: center;
+}
+
+.image-gallery {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* Permite que las imágenes se envuelvan en dispositivos pequeños */
+    margin: 20px 0;
+}
+
+.image-gallery img {
+    width: 18%; /* Tamaño relativo para dispositivos grandes */
+    max-width: 100%; /* Ajusta el ancho máximo */
+    border-radius: 10px;
+    margin-bottom: 20px; /* Espaciado entre las imágenes */
+}
+
+.details {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.reserve-button {
+    background-color: #3CB371;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.reserve-button:hover {
+    background-color: #2E8B57;
+}
+
+.map-section {
+    text-align: center; /* Alinea el contenido al centro */
+    margin-top: 20px;
+}
+
+/* Ajustes para el mapa */
+.map {
+    width: 100%; /* Ajuste completo del mapa */
+    height: 400px; /* Altura fija del mapa */
+    margin: 20px auto; /* Centra el mapa horizontalmente */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding-top: 60px;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 40%;
+    max-width: 400px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.pay-button {
+    background-color: #000;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.pay-button:hover {
+    background-color: #444;
+}
+
+form {
+    text-align: left;
+    margin-top: 20px;
+}
+
+form label, form input {
+    display: block;
+    margin: 10px 0;
+}
+
+form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+/* Media queries para responsividad */
+@media only screen and (max-width: 1200px) {
+    .map {
+        height: 300px; /* Altura fija del mapa en dispositivos grandes */
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .container_tour {
+        padding: 10px; /* Reduce el padding en dispositivos pequeños */
+    }
+
+    h1, h2 {
+        font-size: 24px; /* Reduce el tamaño de los títulos */
+    }
+
+    .image-gallery {
+        justify-content: center; /* Centra las imágenes en dispositivos pequeños */
+    }
+
+    .image-gallery img {
+        width: 100%; /* Imágenes ocupan todo el ancho disponible en dispositivos pequeños */
+        max-width: none; /* Desactiva el ancho máximo para que las imágenes se ajusten */
+        margin-bottom: 10px; /* Espaciado entre las imágenes */
+    }
+
+    .details p {
+        font-size: 14px; /* Reduce el tamaño del texto */
+    }
+
+    .reserve-button {
+        padding: 8px 16px; /* Ajusta el padding del botón */
+        font-size: 14px; /* Reduce el tamaño del texto del botón */
+    }
+
+    .map {
+        height: 20px; /* Altura reducida del mapa en dispositivos pequeños */
+        width: 10%;
+    }
+
+    .map-section {
+        margin-top: 10px; /* Reduce el margen superior del map-section */
+        width: 150px;
+    }
+
+    .map-section iframe {
+        width: 300px;
+    }
+}

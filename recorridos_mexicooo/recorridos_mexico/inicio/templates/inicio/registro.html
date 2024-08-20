@@ -1,0 +1,39 @@
+{% extends "inicio/predeterminado.html" %}
+
+{% block titulo %} REGISTRO {%endblock%}
+
+{%load static%}
+{% block contenido %}
+
+    <div class="contenido-modal2">
+        <form action="">
+        <div>
+            <input class="btn btn-white" type="submit" value="X">
+        </div>
+        </form>
+        <h3>REGISTRO DE USUARIO</h3>  
+        <form action="">       
+            <div>
+                <label for="nombre">Nombre</label><input type="text" name="nombre" id="nombre" placeholder="Ingresa tus nombre">
+            </div>
+            <div>
+                <label for="apellidos">Apellido</label><input type="text" name="apellido" id="apellido" placeholder="Ingresa tus apellidos">
+            </div>
+            <div>
+                <label for="correo">Correo Electronico</label><input type="text" name="correo" id="correo" placeholder="Ingresa tu correo electronico">
+            </div>   
+            <div>
+                <label for="telefono">Teléfono</label><input type="text" name="telefono" id="telefono" placeholder="Ingresa tu numero telefonico">
+            </div>                 
+            <div>
+                <label for="contraseña">Contraseña</label><input type="text" name="contraseña" id="contraseña" placeholder="Ingresa tu contraseña">
+            </div>
+            <form action="">
+                <div>
+                    <input type="submit" value="Enviar">                  
+                </div>
+            </form>
+        </form>
+    </div>
+
+{%endblock%}

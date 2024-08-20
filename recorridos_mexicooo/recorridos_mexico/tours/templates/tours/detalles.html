@@ -1,0 +1,88 @@
+{% extends "inicio/predeterminado.html" %}
+
+{% block titulo %} DETALLE DEL TOURS {%endblock%}
+
+{%load static%}
+
+{% block contenido %}
+
+<div class="container_tour">
+    <div class="content">
+        <h1>{{ tours.nombre }}</h1>
+        <h2>{{ tours.ciudad }}, {{ tours.estado }}</h2>
+        <div class="image-gallery">
+            <img src="{% static 'inicio/images/mm.jpg' %}">
+            <img src="{% static 'inicio/images/mm2.jpg' %}">
+            <img src="{% static 'inicio/images/mariposa-monarca-3.jpg' %}">
+            <img src="{% static 'inicio/images/mariposa-monarca.jpg' %}">
+            <img src="{% static 'inicio/images/mariposa.jpg' %}">
+        </div>
+        <div class="details">
+            <p>Fecha: {{ tours.fecha }}</p>
+            <p>Hora: {{ tours.hora }}</p>
+            <p>Kilómetros del recorrido: {{ tours.km }}</p>
+            <p>Punto de inicio: {{ tours.punto_inicio }}</p>
+            <p>Descripción:  {{ tours.descripcion }}</p>
+        </div>
+        <button class="reserve-button" id="openModalBtn">HACER RESERVA</button>
+    </div>
+    <div class="map-section">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30053.3133877659!2d-100.31173681822332!3d19.68432778371735!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d2c0448b6af7d5%3A0x7835069efafe3c80!2s61295%20Santuario%20Mariposa%20Monarca%2C%20Mich.!5e0!3m2!1ses!2smx!4v1720765515188!5m2!1ses!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="reservationModal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h1>{{ tours.nombre }}</h1>
+        <h2>{{ tours.ciudad }}, {{ tours.estado }}</h2>
+        <img src="{{tours.imagen.url}}" style="height: 150px; width: 100%;">
+        <div class="details">
+            <p>Fecha: {{ tours.fecha }}</p>
+            <p>Hora: {{ tours.hora }}</p>
+            <p>Kilómetros del recorrido: {{ tours.km }}</p>
+            <p>Punto de inicio: {{ tours.punto_inicio }}</p>
+            <p>Punto final: {{ tours.punto_final }}</p>
+            <p>Costo por persona: {{ tours.costo }}</p>
+            <p>Lugares disponibles: {{ tours.lugares_disponibles }}</p>
+        </div>
+        <form>
+            <label for="num_lugares">Lugares a reservar:</label>
+            <input type="number" id="num_lugares" name="num_lugares" min="1">
+            <p>Tu pago es de: $<span id="total_pago">0</span></p>
+            <button type="submit" class="pay-button">PAGAR</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    var modal = document.getElementById("reservationModal");
+    var btn = document.getElementById("openModalBtn");
+    var span = document.getElementsByClassName("close")[0];
+
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+    document.getElementById("num_lugares").addEventListener("input", function() {
+        var costo = {{ tours.costo }};
+        var lugares = this.value;
+        var total = costo * lugares;
+        document.getElementById("total_pago").textContent = total;
+    });
+</script>
+
+
+<!-- /Contenido Principal-->
+{%endblock%}

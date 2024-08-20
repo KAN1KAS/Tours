@@ -1,0 +1,267 @@
+@font-face {
+  font-family: 'd';
+  src: url("/static/inicio/fonts/badhorse.ttf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'litle';
+  src: url("/static/inicio/fonts/Little.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'chil';
+  src: url("/static/inicio/fonts/Childos.otf") format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background-color: #ffffff;
+  min-height: 100%;
+}
+
+/* Estilos específicos para el menú desplegable dentro de .navigation */
+.navigation .submenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  background-color: #ffffff;
+  list-style: none;
+  min-width: 130px;
+  z-index: 1000; /* Asegura que el menú aparezca sobre otros contenidos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra para el menú */
+}
+
+.navigation .submenu a {
+  display: block; /* Asegura que los enlaces ocupen todo el ancho */
+  padding: 10px 20px; /* Incrementa el espacio para facilitar el toque en dispositivos móviles */
+  color: #000000; /* Color del texto */
+  text-decoration: none; /* Quita el subrayado de los enlaces */
+  transition: background-color 0.3s; /* Transición suave para el color de fondo */
+}
+
+.navigation .submenu a:hover {
+  width: 100%;
+  background-color: rgba(97, 157, 79, 0.2); /* Color de fondo al pasar el mouse */
+}
+
+.navigation li:hover > .submenu {
+  display: block; /* Muestra el submenú al pasar el mouse sobre el ítem padre */
+ 
+}
+
+.navigation .submenu .submenu {
+  top: 0;
+  left: 100%;
+  min-width: 100px; /* Ancho mínimo para submenús */
+  white-space: nowrap; /* Evita que el texto se divida en varias líneas */
+}
+
+/* Media query para hacer el menú responsivo */
+@media screen and (max-width: 768px) {
+  .navigation .submenu {
+    position: static; /* Cambia a posición estática para que se muestre correctamente */
+    display: none; /* Oculta el submenú por defecto */
+    background-color: transparent; /* Fondo transparente */
+    box-shadow: none; /* Sin sombra */
+    min-width: auto; /* Ancho automático */
+    width: 100%; /* Ancho completo del contenedor */
+    left: auto; /* Cambia a left: auto para eliminar el margen izquierdo */
+  }
+
+  .navigation .submenu a {
+    display: block;
+    padding: 12px 20px;
+  }
+
+  .navigation .submenu .submenu {
+    position: static; /* Cambia a posición estática para submenús */
+    left: auto; /* Quita el desplazamiento a la izquierda */
+    min-width: auto; /* Ancho automático */
+    width: 100%; /* Ancho completo del contenedor */
+  }
+
+  .navigation li:hover > .submenu {
+    display: block; /* Muestra el submenú al pasar el mouse */
+  }
+}
+
+
+
+/* Contenedor principal de la página */
+.page-container {
+  display: flex;
+  flex-direction: column; 
+  width: 100%;
+  position: relative; 
+  padding-top: 60px; 
+}
+
+/* Barra lateral */
+.navbar {
+  background-color: #ffffff;
+  color: #000; 
+  display: flex;
+  align-items: center;
+  padding: 0 15px; 
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+  height: 70px; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  width: 100%; 
+}
+
+.user-menu img {
+  width: 60px; 
+  border-radius: 50%; 
+  margin-right: 10px; 
+}
+
+.navbar-content {
+  margin-left: auto; 
+}
+
+/* Elementos de navegación */
+.navigation {
+  list-style: none;
+  padding: 0;
+  margin: 0; 
+  display: flex; 
+  font-size: 13px; 
+}
+
+.navigation li {
+  margin-left: 30px; 
+  position: relative; 
+}
+
+.navigation li a {
+  color: #000000; /* Color del texto */
+  font-family: 'chil','Century Gothic';
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+
+.navigation li.active {
+    background-color: #9DBDB0; 
+    border-radius: 5px; 
+    width: flex; 
+    padding: 2px;
+}
+
+
+/* Contenido principal de la página */
+.page-content {
+  margin: 30px;
+  width: auto;
+}
+
+/* Contenedor principal del contenido */
+.page-content-principal {
+  position: relative; 
+  width: 100%; 
+  height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+}
+
+/* Imagen en el contenedor principal */
+.page-content-principal img {
+  position: absolute; 
+  top: 0;
+  left: 0;
+  width: 100%; 
+  height: 100%; 
+  object-fit: cover;
+  opacity: 0.8; 
+}
+
+/* Título encima de la imagen */
+.page-content-principal .title {
+  position: absolute; 
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%); 
+  font-size: 110px; 
+  color: #000000; 
+  text-align: center; 
+  margin: 10px ;
+  font-family: 'd',sans-serif;
+}
+
+
+@media screen and (max-width: 768px) {
+  .navigation {
+    font-size: 10px;
+    display: none; 
+    flex-direction: column; 
+    position: absolute;
+    top: 70px; 
+    right: 0; 
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: 50%; 
+    max-width: 300px; 
+    padding: 10px; 
+    transform: translateX(100%); 
+    transition: transform 0.3s ease; 
+  }
+
+  .navigation.active {
+    display: flex; 
+    transform: translateX(0); 
+  }
+
+  .navigation li {
+    text-align: center; 
+    padding: 2px; 
+    margin: 0;
+  }
+
+  .menu-toggle {
+    display: block; 
+    font-size: 18px; 
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px; 
+    color: #000;
+  }
+
+  .menu-toggle .fas {
+    font-size: 24px; 
+  }
+
+  .user-menu img {
+    width: 55px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .page-content-principal .title {
+    font-size: 4.5em !important;
+  }
+}
+
+/* Ocultar el menú toggle en pantallas más grandes */
+@media screen and (min-width: 769px) {
+  .menu-toggle {
+    display: none;
+  }
+}
